@@ -1,232 +1,338 @@
-<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>資訊一​電子作業公告系統</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #1a1a1d;
-            color: #c5c6c7;
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+	<!DOCTYPE html>
+	<!-- saved from url=(0049)http://homeworks5342.atwebpages.com/homework.html -->
+	<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		
-		.form {
-			display:flex;
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #222;
-            border-radius: 4px;
-            width: 100%;
-            max-width: 600px;
-            animation: fadeIn 2s ease-out forwards;
-		}		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>資訊一​電子作業公告系統</title>
+		<style>
+	body {
+		font-family: Arial, sans-serif;
+		background-color: #1a1a1d;
+		color: #c5c6c7;
+		margin: 0;
+		padding: 20px;
+		line-height: 1.6;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+			
+	.form {
+		flex-wrap:wrap;
+		margin: 5px;
+		padding: 10px;
+		background-color: #222;
+		border-radius: 4px;
+		width: 100%;
+		max-width: 600px;	
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+		animation: fadeIn 2s ease-out forwards;
+		margin: 5px;
 		
-		.form2 {
-			display:flex;
-			flex-wrap:wrap;
-			margin: 15px;
-		}
-		
-		textarea {
-			max-width: 750px;
-		}
+	}		
+			
+	.form2 {
+		display:flex;
+		flex-wrap:wrap;
+		margin: 15px;
+	}
 
-        h1, h2, h3, h4, a, form {
-            animation: fadeIn 1s ease-out forwards;
-        }
 
-        h1 {
-            color: #66fcf1;
-            text-align: center;
-            font-size: 2em;
-            margin-top: 0;
-        }
+			
+	textarea {
+		max-width: 100%;
+		min-height: 60px;
+		resize: vertical;
+		font-size: 14px;
+	}
 
-        h4 {
-            font-weight: normal;
-            color: #c5c6c7;
-        }
+	h1, h2, h3, h4, a {
+		animation: fadeIn 1s ease-out forwards;
+	}
 
-        h2 {
-            color: #fd6262;
-        }
+	h1 {
+		color: #ffffff;
+		text-align: center;
+		font-size: 2em;
+		margin-top: 0;
+	}
 
-        h3 {
-            color: ;
-        }
+	h2 {
+		text-align: center;
+		color: #fd6262;
+		margin-top: 20px;
+	}
 
-        a {
-            color: #66fcf1;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+	h3 {
+		color: #c5c6c7;
+		margin: 5px 0;
+	}
 
-        a:hover {
-            color: #45a29e;
-        }
+	a {
+		color: #889ce7;
+		text-decoration: none;
+		transition: color 0.3s ease;
+	}
 
-        label {
-            font-weight: bold;
-            margin-top: 10px;
-            display: block;
-            color: #c5c6c7;
-            animation: slideIn 1s ease-out forwards;
-        }
+	a:hover {
+		color: #45a29e;
+	}
 
-        input[type="text"],
-        input[type="date"],
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #c5c6c7;
-            border-radius: 15px;
-            background-color: #333;
-            color: #f0f0f0;
-            animation: slideIn 1.5s ease-out forwards;
-        }
+	label {
+		font-weight: bold;
+		margin-top: 10px;
+		color: #c5c6c7;
+	}
 
-        button {
-            background-color: #45a29e;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-            transition: background-color 0.3s ease;
-        }
+	.logo {
+		width: 90%;
+		max-width: 500px;
+		margin-top: 10px;
+		margin-bottom: 20px;
+		animation: slideIn 1s ease-out forwards;
+	}
 
-        button:hover {
-            background-color: #66fcf1;
-        }
+	input[type="text"],
+	input[type="date"],
+	textarea {
+		font-family: Arial, sans-serif;
+		width: 100%;
+		padding: 10px;
+		margin-top: 10px;
+		border: 1px solid #c5c6c7;
+		border-radius: 8px;
+		background-color: #333;
+		color: #f0f0f0;
+		font-size: 16px;
+		animation: slideIn 1.5s ease-out forwards;
+		transition: border-color 0.3s ease;
+	}
 
-        #homeworkList {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #222;
-            border-radius: 4px;
-            width: 100%;
-            max-width: 600px;
-            animation: fadeIn 2s ease-out forwards;
-        }
+	input[type="text"]:focus,
+	input[type="date"]:focus,
+	textarea:focus {
+		border-color: #fd6262;
+		outline: none;
+	}
 
-        .homeworkItem {
-            border: 1px solid #333;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            background-color: #333;
-            color: #f0f0f0;
-        }
+	input[type="text"]:hover,
+	input[type="date"]:hover,
+	textarea:hover {
+		border-color: #fd6262;
+		transition: border-color 0.3s ease; /* Smooth transition effect */
+	}
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
 
-        @keyframes slideIn {
-            from { transform: translateX(-20px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
+	button {
+		background-color: #fd6262;
+		color: white;
+		padding: 12px 25px;
+		border: 2px solid #fd6262;
+		border-radius: 8px;
+		cursor: pointer;
+		font-size: 16px;
+		margin-top: 20px;
+		transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+		outline: none;
+	}
 
-        /* Responsive Design */
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
+	button:hover {
+		background-color: #ff7b7b;
+		transform: scale(1.03);
+	}
 
-            h1 {
-                font-size: 1.5em;
-            }
+	button:active {
+		background-color: transparent;
+		color: #fd6262;
+		border-color: #fd6262;
+		transform: scale(0.95);
+		transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+	}
 
-            button {
-                width: 100%;
-            }
+	button:focus {
+		outline: none;
+		box-shadow: none;
+		background-color: #fd6262;
+	}
 
-            #homeworkList {
-                padding: 5px;
-            }
-        }
-    </style>
-</head>
-<body>
 
-    <h1>資訊一聯絡簿</h1>
-    <a href="https://discord.com/oauth2/authorize?client_id=1084389665026613288&amp;permissions=8&amp;integration_type=0&amp;scope=bot+applications.commands" target="_blank">作者dc機器人</a>
-    <p>
-        <a href="https://youtu.be/dQw4w9WgXcQ?si=81BwvByC3bO-n_qL" target="_blank">點擊領取福利</a>
-    </p>
-    <h2>規則</h2>
-    <h3>1.請勿外流連結給本班以外的學生</h3>
-    <h3>2.請勿冒用他人身分如收到舉報則會調出後台ip並永久封鎖此ip</h3>
-    <h3>3.請勿傳送無意義之訊息刷屏</h3>
-	
-	 <h2>功課列表</h2>
-    <div id="homeworkList"><div class="homeworkItem">上傳者：mei lien | 上傳日期：2024-10-27 | 作業內容：英文fun輕鬆page110作業 | 繳交日期：2024-10-28</div><div class="homeworkItem">上傳者：SevenBlue TECH | 上傳日期：2024-10-30 | 作業內容：範例：【科目或處室單位】（作業詳情、作業範圍、要求註明） | 繳交日期：2024-10-30</div></div>
-	
-	
-	<br>
-    <h2>上傳功課表單</h2>
-	<div class="form">
-		<div class="form2">
-			<label for="uploader">功課上傳者：</label>
-			<input type="text" id="uploader" placeholder="請輸入上傳者姓名或座號"><br>
-    
-			<label for="uploadDate">上傳日期：</label>
-			<input type="date" id="uploadDate"><br>
+	#homeworkList {
+		margin-top: 20px;
+		padding: 15px;
+		background-color: #333333c5;
+		border-radius: 8px;
+		width: 97%;
+		max-width:570px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+		animation: fadeIn 2s ease-out forwards;
+	}
+
+	.homeworkItem {
+		border: 1px solid #333;
+		padding: 10px;
+		margin-bottom: 10px;
+		border-radius: 5px;
+		background-color: #333;
+		color: #f0f0f0;
+		transition: transform 0.2s ease;
+	}
+
+	.homeworkItem:hover {
+		transform: scale(1.03);
+	}
+
+
+	footer {
+		text-align: center;
+		margin-top: 20px;
+		font-size: 14px;
+		color: #666;
+	}
+
+	@keyframes fadeIn {
+		from { opacity: 0; }
+		to { opacity: 1; }
+	}
+
+	@keyframes slideIn {
+		from { transform: translateX(-20px); opacity: 0; }
+		to { transform: translateX(0); opacity: 1; }
+	}
+
+
+		</style>
+	</head>
+	<body>
+
+	<img class="logo" src="https://dhsntech.github.io/yjvs-homework/yjvs-information-nobackground.svg" alt="SVG Image" >
+		<h1>資訊一電子作業公告系統</h1>
+		<a href="https://discord.com/oauth2/authorize?client_id=1084389665026613288&amp;permissions=8&amp;integration_type=0&amp;scope=bot+applications.commands" target="_blank">作者dc機器人</a>
+		<p>
+			<a href="https://youtu.be/dQw4w9WgXcQ?si=81BwvByC3bO-n_qL" target="_blank">點擊領取福利</a>
+		</p>
+		<div class="form">
+			<h2>規則</h2>
+			<h3>1.請勿外流連結給本班以外的學生</h3>
+			<h3>2.請勿冒用他人身分如收到舉報則會調出後台ip並永久封鎖此ip</h3>
+			<h3>3.請勿傳送無意義之訊息刷屏</h3>
 		</div>
-		<div class="form2">
-			<label for="homeworkInput">作業內容：</label>
-			<textarea id="homeworkInput" placeholder="請輸入今天的作業..." rows="1" cols="50"></textarea><br>
-    
-			<label for="dueDate">繳交日期：</label>
-			<input type="date" id="dueDate"><br>
-		</div>	
-    </div>
-			<button id="saveHomework">保存功課</button>
-	
-
-<footer>
-    <p class="footer-text">資訊一開發團隊版權所有</p>
-</footer>
+		
+		<div class="form">
+			<h2>作業列表</h2>
+			<div id="homeworkList">
+				<div class="homeworkItem"></div>
+			</div>
+			</div>
+		
 
 
-<script>
-    async function loadHomeworks() {
-        const homeworkList = document.getElementById('homeworkList');
-        homeworkList.innerHTML = '';
+		<div class="form">
+			<h2>上傳作業表單</h2>
+			<div class="form2">
+				<label for="uploader">作業上傳者：</label>
+				<input type="text" id="uploader" placeholder="請輸入上傳者姓名或座號"><br>
+			
+				<label for="homeworkInput">作業內容：</label	>
+				<textarea id="homeworkInput" placeholder="請輸入今天的作業..." rows="1" cols="50"></textarea><br>
+							
+				<label for="uploadDate">上傳日期：</label>
+				<input type="date" id="uploadDate"><br>			
+		
+				<label for="dueDate">繳交日期：</label>
+				<input type="date" id="dueDate"><br>
+			</div>	
+						<button id="saveHomework">保存功課</button>
+		</div>
 
-        try {
-            const response = await fetch('./data/homeworks.json'); // Adjust the path as needed
-            const homeworks = await response.json();
+		
 
-            // Sort by due date
-            homeworks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+	<footer>
+		<p>© 2024 by 資訊一開發團隊 </p>
+		<br>
+		<br>
+		<br>
+		<a href="https://sally802528.wixsite.com/information" target="_blank">跳轉至說明頁</a>
+	</footer>
 
-            homeworks.forEach(homework => {
-                const homeworkDiv = document.createElement('div');
-                homeworkDiv.classList.add('homeworkItem');
-                homeworkDiv.textContent = `上傳者：${homework.uploader} | 上傳日期：${homework.uploadDate} | 作業內容：${homework.homeworkText} | 繳交日期：${homework.dueDate}`;
-                homeworkList.appendChild(homeworkDiv);
-            });
-        } catch (error) {
-            console.error("Error loading homeworks:", error);
-        }
-    }
+		<script>
+		async function saveHomework(homework) {
+			console.log(homework); 
+			try {
+				const response = await fetch('http://homeworks5342.atwebpages.com/save_homework.php', {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(homework)
+				});
+				const result = await response.json();
+				if (result.success) {
+					loadHomeworks();
+				} else {
+					console.error("Error adding document:", result.error);
+				}
+			} catch (error) {
+				console.error("Error adding document:", error);
+			}
+		}
 
-    document.getElementById('saveHomework').addEventListener('click', () => {
-        alert("GitHub Pages is read-only; data cannot be saved directly here.");
-    });
 
-    loadHomeworks();
-</script>
+		async function loadHomeworks() {
+			const homeworkList = document.getElementById('homeworkList');
+			homeworkList.innerHTML = '';
 
-</body>
-</html>
+			try {
+				const response = await fetch('http://homeworks5342.atwebpages.com/load_homeworks.php');
+				let homeworks = await response.json();
+
+				// Sort by due date
+				homeworks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+
+				homeworks.forEach((homework) => {
+					const homeworkDiv = document.createElement('div');
+					homeworkDiv.classList.add('homeworkItem');
+					homeworkDiv.textContent = `上傳者：${homework.uploader} | 上傳日期：${homework.uploadDate} | 作業內容：${homework.homeworkText} | 繳交日期：${homework.dueDate}`;
+					homeworkList.appendChild(homeworkDiv);
+				});
+			} catch (error) {
+				console.error("Error loading documents:", error);
+			}
+		}
+
+		document.getElementById('saveHomework').addEventListener('click', function() {
+			const uploader = document.getElementById('uploader').value.trim();
+			const uploadDate = document.getElementById('uploadDate').value;
+			const homeworkText = document.getElementById('homeworkInput').value.trim();
+			const dueDate = document.getElementById('dueDate').value;
+
+			if (uploader && homeworkText && uploadDate && dueDate) {
+				const homework = { 
+					uploader, 
+					uploadDate, 
+					homeworkText, 
+					dueDate 
+				};
+				saveHomework(homework);
+				
+				document.getElementById('uploader').value = '';
+				document.getElementById('uploadDate').value = '';
+				document.getElementById('homeworkInput').value = '';
+				document.getElementById('dueDate').value = '';
+			} else {
+				alert('請填寫所有欄位！');
+			}
+		});
+
+
+		document.addEventListener('DOMContentLoaded', () => {
+			const today = new Date().toISOString().split('T')[0];
+			document.getElementById('uploadDate').value = today;
+		});
+		
+		
+		loadHomeworks();
+
+		</script>
+
+
+	</body></html>
