@@ -297,6 +297,8 @@
 						icon: 'error',
 						title: '上傳失敗',
 						text: 'Error adding document:result.error',
+						timer: 10000,
+						timerProgressBar: true,
 						confirmButtonText: '確認'
 					});
 				}
@@ -306,6 +308,8 @@
 						icon: 'error',
 						title: '上傳失敗',
 						text: 'Error adding document:error',
+						timer: 10000,
+						timerProgressBar: true,
 						confirmButtonText: '確認'
 					});
 			}
@@ -335,7 +339,10 @@
 				icon: 'warning',
 				title: '無法載入作業列表',
 				text: 'Error loading documents:error',
+				timer: 10000,
+				timerProgressBar: true,
 				confirmButtonText: '確認'
+		
 			});
 			}
 		}
@@ -365,8 +372,10 @@ document.getElementById('saveHomework').addEventListener('click', function() {
         Swal.fire({
             icon: 'error',
             title: '請填寫所有欄位',
-            text: '請確認每個欄位都已填寫。',
-            confirmButtonText: '確認'
+            text: '請確認每個欄位都已填寫',
+			timer: 10000,
+			timerProgressBar: true,
+			confirmButtonText: '確認'
         });
     }
 });
@@ -377,4 +386,5 @@ document.getElementById('saveHomework').addEventListener('click', function() {
 		</script>
 
 
-	</body></html>
+	</body>
+	</html>
