@@ -1,0 +1,232 @@
+<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>資訊一​電子作業公告系統</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1d;
+            color: #c5c6c7;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+		
+		.form {
+			display:flex;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #222;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 600px;
+            animation: fadeIn 2s ease-out forwards;
+		}		
+		
+		.form2 {
+			display:flex;
+			flex-wrap:wrap;
+			margin: 15px;
+		}
+		
+		textarea {
+			max-width: 750px;
+		}
+
+        h1, h2, h3, h4, a, form {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        h1 {
+            color: #66fcf1;
+            text-align: center;
+            font-size: 2em;
+            margin-top: 0;
+        }
+
+        h4 {
+            font-weight: normal;
+            color: #c5c6c7;
+        }
+
+        h2 {
+            color: #fd6262;
+        }
+
+        h3 {
+            color: ;
+        }
+
+        a {
+            color: #66fcf1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #45a29e;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+            color: #c5c6c7;
+            animation: slideIn 1s ease-out forwards;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #c5c6c7;
+            border-radius: 15px;
+            background-color: #333;
+            color: #f0f0f0;
+            animation: slideIn 1.5s ease-out forwards;
+        }
+
+        button {
+            background-color: #45a29e;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #66fcf1;
+        }
+
+        #homeworkList {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #222;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 600px;
+            animation: fadeIn 2s ease-out forwards;
+        }
+
+        .homeworkItem {
+            border: 1px solid #333;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #333;
+            color: #f0f0f0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            #homeworkList {
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>資訊一聯絡簿</h1>
+    <a href="https://discord.com/oauth2/authorize?client_id=1084389665026613288&amp;permissions=8&amp;integration_type=0&amp;scope=bot+applications.commands" target="_blank">作者dc機器人</a>
+    <p>
+        <a href="https://youtu.be/dQw4w9WgXcQ?si=81BwvByC3bO-n_qL" target="_blank">點擊領取福利</a>
+    </p>
+    <h2>規則</h2>
+    <h3>1.請勿外流連結給本班以外的學生</h3>
+    <h3>2.請勿冒用他人身分如收到舉報則會調出後台ip並永久封鎖此ip</h3>
+    <h3>3.請勿傳送無意義之訊息刷屏</h3>
+	
+	 <h2>功課列表</h2>
+    <div id="homeworkList"><div class="homeworkItem">上傳者：mei lien | 上傳日期：2024-10-27 | 作業內容：英文fun輕鬆page110作業 | 繳交日期：2024-10-28</div><div class="homeworkItem">上傳者：SevenBlue TECH | 上傳日期：2024-10-30 | 作業內容：範例：【科目或處室單位】（作業詳情、作業範圍、要求註明） | 繳交日期：2024-10-30</div></div>
+	
+	
+	<br>
+    <h2>上傳功課表單</h2>
+	<div class="form">
+		<div class="form2">
+			<label for="uploader">功課上傳者：</label>
+			<input type="text" id="uploader" placeholder="請輸入上傳者姓名或座號"><br>
+    
+			<label for="uploadDate">上傳日期：</label>
+			<input type="date" id="uploadDate"><br>
+		</div>
+		<div class="form2">
+			<label for="homeworkInput">作業內容：</label>
+			<textarea id="homeworkInput" placeholder="請輸入今天的作業..." rows="1" cols="50"></textarea><br>
+    
+			<label for="dueDate">繳交日期：</label>
+			<input type="date" id="dueDate"><br>
+		</div>	
+    </div>
+			<button id="saveHomework">保存功課</button>
+	
+
+<footer>
+    <p class="footer-text">資訊一開發團隊版權所有</p>
+</footer>
+
+
+<script>
+    async function loadHomeworks() {
+        const homeworkList = document.getElementById('homeworkList');
+        homeworkList.innerHTML = '';
+
+        try {
+            const response = await fetch('./data/homeworks.json'); // Adjust the path as needed
+            const homeworks = await response.json();
+
+            // Sort by due date
+            homeworks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+
+            homeworks.forEach(homework => {
+                const homeworkDiv = document.createElement('div');
+                homeworkDiv.classList.add('homeworkItem');
+                homeworkDiv.textContent = `上傳者：${homework.uploader} | 上傳日期：${homework.uploadDate} | 作業內容：${homework.homeworkText} | 繳交日期：${homework.dueDate}`;
+                homeworkList.appendChild(homeworkDiv);
+            });
+        } catch (error) {
+            console.error("Error loading homeworks:", error);
+        }
+    }
+
+    document.getElementById('saveHomework').addEventListener('click', () => {
+        alert("GitHub Pages is read-only; data cannot be saved directly here.");
+    });
+
+    loadHomeworks();
+</script>
+
+</body>
+</html>
