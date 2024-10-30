@@ -1,5 +1,8 @@
+
 	<!DOCTYPE html>
-	<!-- saved from url=(0049)http://homeworks5342.atwebpages.com/homework.html -->
+	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -233,7 +236,7 @@
 				<input type="text" id="uploader" placeholder="請輸入上傳者姓名或座號"><br>
 			
 				<label for="homeworkInput">作業內容：</label	>
-				<textarea id="homeworkInput" placeholder="請輸入今天的作業..." rows="1" cols="50"></textarea><br>
+				<textarea id="homeworkInput" placeholder="請輸入今天的作業..." rows="3" cols="50"></textarea><br>
 							
 				<label for="uploadDate">上傳日期：</label>
 				<input type="date" id="uploadDate"><br>			
@@ -241,7 +244,7 @@
 				<label for="dueDate">繳交日期：</label>
 				<input type="date" id="dueDate"><br>
 			</div>	
-						<button id="saveHomework">保存功課</button>
+			<button id="saveHomework">保存功課</button>
 		</div>
 
 		
@@ -258,7 +261,7 @@
 		async function saveHomework(homework) {
 			console.log(homework); 
 			try {
-				const response = await fetch('http://homeworks5342.atwebpages.com/save_homework.php', {
+				const response = await fetch('save_homework.php', {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json"
@@ -282,7 +285,7 @@
 			homeworkList.innerHTML = '';
 
 			try {
-				const response = await fetch('http://homeworks5342.atwebpages.com/load_homeworks.php');
+				const response = await fetch('load_homeworks.php');
 				let homeworks = await response.json();
 
 				// Sort by due date
@@ -299,29 +302,37 @@
 			}
 		}
 
-		document.getElementById('saveHomework').addEventListener('click', function() {
-			const uploader = document.getElementById('uploader').value.trim();
-			const uploadDate = document.getElementById('uploadDate').value;
-			const homeworkText = document.getElementById('homeworkInput').value.trim();
-			const dueDate = document.getElementById('dueDate').value;
+document.getElementById('saveHomework').addEventListener('click', function() {
+    const uploader = document.getElementById('uploader').value.trim();
+    const uploadDate = document.getElementById('uploadDate').value;
+    const homeworkText = document.getElementById('homeworkInput').value.trim();
+    const dueDate = document.getElementById('dueDate').value;
 
-			if (uploader && homeworkText && uploadDate && dueDate) {
-				const homework = { 
-					uploader, 
-					uploadDate, 
-					homeworkText, 
-					dueDate 
-				};
-				saveHomework(homework);
-				
-				document.getElementById('uploader').value = '';
-				document.getElementById('uploadDate').value = '';
-				document.getElementById('homeworkInput').value = '';
-				document.getElementById('dueDate').value = '';
-			} else {
-				alert('請填寫所有欄位！');
-			}
-		});
+    if (uploader && homeworkText && uploadDate && dueDate) {
+        const homework = { 
+            uploader, 
+            uploadDate, 
+            homeworkText, 
+            dueDate 
+        };
+        saveHomework(homework);
+        
+		
+        document.getElementById('uploader').value = '';
+        document.getElementById('uploadDate').value = '';
+        document.getElementById('homeworkInput').value = '';
+        document.getElementById('dueDate').value = '';
+    } else {
+        // SweetAlert2 error message
+        Swal.fire({
+            icon: 'error',
+            title: '請填寫所有欄位',
+            text: '請確認每個欄位都已填寫。',
+            confirmButtonText: '確認'
+        });
+    }
+});
+
 
 
 		document.addEventListener('DOMContentLoaded', () => {
