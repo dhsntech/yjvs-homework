@@ -134,14 +134,14 @@
 
 	button:hover {
 		background-color: #ff7b7b;
-		transform: scale(1.05);
+		transform: scale(1.03);
 	}
 
 	button:active {
 		background-color: transparent;
 		color: #fd6262;
 		border-color: #fd6262;
-		transform: scale(0.95);
+		transform: scale(0.99);
 		transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 	}
 
