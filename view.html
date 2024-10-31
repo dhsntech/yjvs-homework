@@ -50,8 +50,10 @@
 			
 	.form2 {
 		display:flex;
+		align-items: center;
 		flex-wrap:wrap;
 		margin: 15px;
+		
 	}
 
 
@@ -148,14 +150,15 @@
 		border-radius: 8px;
 		cursor: pointer;
 		font-size: 16px;
-		margin-top: 20px;
+		margin-top: 50px;
 		transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
 		outline: none;
+		width: 100%;
 	}
 
 	button:hover {
 		background-color: #ff7b7b;
-		transform: scale(1.03);
+		transform: scale(1.05);
 	}
 
 	button:active {
@@ -228,17 +231,21 @@
 		</p>
 		<div class="form">
 			<h2>規則</h2>
-			<h3>1.請勿外流連結給本班以外的學生</h3>
-			<h3>2.請勿冒用他人身分如收到舉報則會調出後台ip並永久封鎖此ip</h3>
-			<h3>3.請勿傳送無意義之訊息刷屏</h3>
+			<div class="form2">
+				<h3>1.請勿外流連結給本班以外的學生</h3>
+				<h3>2.請勿冒用他人身分如收到舉報則會調出後台ip並永久封鎖此ip</h3>
+				<h3>3.請勿傳送無意義之訊息刷屏</h3>
+			</div>
 		</div>
 		
 		<div class="form">
 			<h2>作業列表</h2>
-			<div id="homeworkList">
-				<div class="homeworkItem"></div>
+			<div class="form2">
+				<div id="homeworkList">
+					<div class="homeworkItem"></div>
+				</div>
 			</div>
-			</div>
+		</div>
 		
 
 
@@ -256,8 +263,9 @@
 		
 				<label for="dueDate">繳交日期：</label>
 				<input type="date" id="dueDate"><br>
+				<button id="saveHomework">保存功課</button>
 			</div>	
-			<button id="saveHomework">保存功課</button>
+
 		</div>
 
 		
