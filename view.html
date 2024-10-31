@@ -1,5 +1,4 @@
 
-
 	<!DOCTYPE html>
 	
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
@@ -133,76 +132,6 @@
 
 		async function loadHomeworks() {
 			const homeworkList = document.getElementById('homeworkList');
-			homeworkList.innerHTML = '';
-
-			try {
-				const response = await fetch('load_homeworks.php');
-				let homeworks = await response.json();
-
-				// Sort by due date
-				homeworks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
-
-				homeworks.forEach((homework) => {
-					const homeworkDiv = document.createElement('div');
-					homeworkDiv.classList.add('homeworkItem');
-					homeworkDiv.textContent = `上傳者：${homework.uploader} \n 作業內容：${homework.homeworkText} \n 上傳日期：${homework.uploadDate} \n 繳交日期：${homework.dueDate}`;
-					homeworkList.appendChild(homeworkDiv);
-				});
-			} catch (error) {
-            console.error("Error loading documents:", error);
-			Swal.fire({
-				icon: 'warning',
-				title: '無法載入作業列表',
-				text: 'Error loading documents:error',
-				timer: 10000,
-				timerProgressBar: true,
-				confirmButtonText: '確認'
-		
-			});
-			}
-		}
-
-document.getElementById('saveHomework').addEventListener('click', function() {
-    const uploader = document.getElementById('uploader').value.trim();
-    const uploadDate = document.getElementById('uploadDate').value;
-    const homeworkText = document.getElementById('homeworkInput').value.trim();
-    const dueDate = document.getElementById('dueDate').value;
-
-    if (uploader && homeworkText && uploadDate && dueDate) {
-        const homework = { 
-            uploader, 
-            uploadDate, 
-            homeworkText, 
-            dueDate 
-        };
-        saveHomework(homework);
-
-		
-        document.getElementById('uploader').value = '';
-        document.getElementById('uploadDate').value = '';
-        document.getElementById('homeworkInput').value = '';
-        document.getElementById('dueDate').value = '';
-    } else {
-        // SweetAlert2 error message
-        Swal.fire({
-            icon: 'error',
-            title: '請填寫所有欄位',
-            text: '請確認每個欄位都已填寫',
-			timer: 10000,
-			timerProgressBar: true,
-			confirmButtonText: '確認'
-        });
-    }
-});
-	
-		
-		loadHomeworks();
-
-		</script>
-
-
-	</body>
-	</html>
 			homeworkList.innerHTML = '';
 
 			try {
