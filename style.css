@@ -169,6 +169,7 @@
 
 	.homeworkItem:hover {
 		transform: scale(1.03);
+		border-color: #fd626275;
 	}
 
 
