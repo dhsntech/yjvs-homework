@@ -1,5 +1,6 @@
 
 
+
 	<!DOCTYPE html>
 	
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
@@ -64,12 +65,12 @@
 				<label for="homeworkInput">作業內容：</label	>
 				<textarea id="homeworkInput" placeholder="請輸入今天的作業..." rows="3" cols="50"></textarea><br>
 							
-				<label for="uploadDate">上傳日期：</label>
+				<label for="uploadDate">系統上傳日期：</label>
 				<input type="date" id="uploadDate"><br>			
 		
-				<label for="dueDate">繳交日期：</label>
+				<label for="dueDate">作業繳交日期：</label>
 				<input type="date" id="dueDate"><br>
-				<button class="saveHomework" id="saveHomework">保存功課</button>
+				<button class="saveHomework" id="saveHomework">上傳作業</button>
 			</div>	
 
 		</div>
@@ -77,7 +78,7 @@
 		
 
 	<footer>
-		<p>© 2024 by 資訊一開發團隊 </p>
+		<p> © 2024 by 𝓟𝓾𝓭𝓭𝓲𝓷𝓰 Code x DigiHorizon TECH x SevenBlue TECH </p>
 		<br>
 		<br>
 		<br>
@@ -131,36 +132,56 @@
 		}
 
 
-		async function loadHomeworks() {
-			const homeworkList = document.getElementById('homeworkList');
-			homeworkList.innerHTML = '';
+async function loadHomeworks() {
+    const homeworkList = document.getElementById('homeworkList');
+    homeworkList.innerHTML = '';
 
-			try {
-				const response = await fetch('load_homeworks.php');
-				let homeworks = await response.json();
+    try {
+        const response = await fetch('load_homeworks.php');
+        let homeworks = await response.json();
+        
+        // Get today's date in local time YYYY-MM-DD format
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        const localToday = `${year}-${month}-${day}`;
 
-				// Sort by due date
-				homeworks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+        // Filter homeworks to only include those that are due today or in the future
+        homeworks = homeworks.filter(homework => new Date(homework.dueDate) >= new Date(localToday));
+        
+        // Sort by due date
+        homeworks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
 
-				homeworks.forEach((homework) => {
-					const homeworkDiv = document.createElement('div');
-					homeworkDiv.classList.add('homeworkItem');
-					homeworkDiv.textContent = `上傳者：${homework.uploader} \n 作業內容：${homework.homeworkText} \n 上傳日期：${homework.uploadDate} \n 繳交日期：${homework.dueDate}`;
-					homeworkList.appendChild(homeworkDiv);
-				});
-			} catch (error) {
-            console.error("Error loading documents:", error);
-			Swal.fire({
-				icon: 'warning',
-				title: '無法載入作業列表',
-				text: 'Error loading documents:error',
-				timer: 10000,
-				timerProgressBar: true,
-				confirmButtonText: '確認'
-		
-			});
-			}
-		}
+        homeworks.forEach((homework) => {
+            const homeworkDiv = document.createElement('div');
+            homeworkDiv.classList.add('homeworkItem');
+            homeworkDiv.textContent = `上傳者：${homework.uploader} \n 作業內容：${homework.homeworkText} \n 上傳日期：${homework.uploadDate} \n 繳交日期：${homework.dueDate}`;
+            homeworkList.appendChild(homeworkDiv);
+        });
+    } catch (error) {
+        console.error("Error loading documents:", error);
+        Swal.fire({
+            icon: 'warning',
+            title: '無法載入作業列表',
+            text: 'Error loading documents:error',
+            timer: 10000,
+            timerProgressBar: true,
+            confirmButtonText: '確認'
+        });
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const day = String(today.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+    document.getElementById('uploadDate').value = formattedDate;
+});
+
 
 document.getElementById('saveHomework').addEventListener('click', function() {
     const uploader = document.getElementById('uploader').value.trim();
@@ -177,13 +198,11 @@ document.getElementById('saveHomework').addEventListener('click', function() {
         };
         saveHomework(homework);
 
-		
         document.getElementById('uploader').value = '';
-        document.getElementById('uploadDate').value = '';
+        document.getElementById('uploadDate').value = formattedDate;
         document.getElementById('homeworkInput').value = '';
         document.getElementById('dueDate').value = '';
     } else {
-        // SweetAlert2 error message
         Swal.fire({
             icon: 'error',
             title: '請填寫所有欄位',
@@ -194,9 +213,11 @@ document.getElementById('saveHomework').addEventListener('click', function() {
         });
     }
 });
+		
+loadHomeworks();
+
 	
 		
-		loadHomeworks();
 
 		</script>
 
