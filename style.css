@@ -67,6 +67,11 @@
 		color: #889ce7;
 		text-decoration: none;
 		transition: color 0.3s ease;
+	}	
+	p {
+		color: #c5c6c7;
+		text-decoration: none;
+		transition: color 0.3s ease;
 	}
 
 	a:hover {
