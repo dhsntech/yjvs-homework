@@ -69,9 +69,10 @@
 		transition: color 0.3s ease;
 	}	
 	p {
-		color: #c5c6c7;
+		color: #e7e8e9;
 		text-decoration: none;
 		transition: color 0.3s ease;
+		margin: 5px;
 	}
 
 	a:hover {
