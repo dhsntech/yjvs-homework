@@ -214,7 +214,10 @@
 }
 
 .loadingSpinnertext{
+	display: block; 
     color: #c5c6c7;
+	width: 100%;
+    text-align: center; /* 居中文本 */
 }
 
 .loadingSpinner {
