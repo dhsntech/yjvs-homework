@@ -52,7 +52,7 @@
 				
 				<div class="loadingSpinner" id="loadingSpinner" >
 					<div id="loadingSpinnerloader" class="loadingSpinnerloader"></div>	
-					<div id="loadingSpinnertext" class="loadingSpinnertext"></div>
+					<div id="loadingSpinnertext" class="loadingSpinnertext">載入作業列表中...</div>
 				</div>
 				
 					<div id="homeworkList">
@@ -119,7 +119,8 @@
 					Swal.fire({
 						icon: 'success',
 						title: '上傳成功',
-						text: '',
+						timer: 3000,
+						timerProgressBar: true,
 						confirmButtonText: '確認'
 					});
 				} else {
@@ -128,8 +129,6 @@
 						icon: 'error',
 						title: '上傳失敗',
 						text: 'Error adding document:result.error',
-						timer: 10000,
-						timerProgressBar: true,
 						confirmButtonText: '確認'
 					});
 				}
@@ -139,8 +138,6 @@
 						icon: 'error',
 						title: '上傳失敗',
 						text: 'Error adding document:error',
-						timer: 10000,
-						timerProgressBar: true,
 						confirmButtonText: '確認'
 					});
 			}
@@ -160,8 +157,7 @@ async function loadHomeworks() {
         const response = await fetch('load_homeworks.php');
         let homeworks = await response.json();
 
-        // 隱藏載入動畫
-        loadingSpinner.style.display = 'none';
+
 
         // Get today's date in local time YYYY-MM-DD format
         const today = new Date();
@@ -202,19 +198,21 @@ async function loadHomeworks() {
             homeworkList.appendChild(homeworkDiv);
 			
 			
+			loadingSpinner.style.display = 'none';
 			homeworkList.style.display = 'block';
+			
         });
     } catch (error) {
         // 隱藏載入動畫並顯示錯誤消息
         // 隱藏載入動畫
         loadingSpinner.style.display = 'none';
+		homeworkList.style.display = 'block';
+		homeworkList.innerHTML = '無法載入作業列表';
         console.error("Error loading documents:", error);
         Swal.fire({
             icon: 'warning',
             title: '無法載入作業列表',
             text: 'Error loading documents: error',
-            timer: 10000,
-            timerProgressBar: true,
             confirmButtonText: '確認'
         });
     }
@@ -257,8 +255,6 @@ document.getElementById('saveHomework').addEventListener('click', function() {
             icon: 'error',
             title: '請填寫所有欄位',
             text: '請確認每個欄位都已填寫',
-			timer: 10000,
-			timerProgressBar: true,
 			confirmButtonText: '確認'
         });
     }
