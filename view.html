@@ -28,14 +28,14 @@
 
 	</head>
 	
-	
+
+
+
 	<body>
 
 	<img class="logo" src="https://dhsntech.github.io/yjvs-homework/yjvs-information-homework-system.svg" alt="永靖高工 資訊科  Yjvs Information" >
 		<a href="https://discord.com/oauth2/authorize?client_id=1084389665026613288&amp;permissions=8&amp;integration_type=0&amp;scope=bot+applications.commands" target="_blank">作者dc機器人</a>
-		<p>
-			<a href="https://youtu.be/dQw4w9WgXcQ?si=81BwvByC3bO-n_qL" target="_blank">點擊領取福利</a>
-		</p>
+		<a href="https://youtu.be/dQw4w9WgXcQ?si=81BwvByC3bO-n_qL" target="_blank">點擊領取福利</a>
 		<div class="form">
 			<h2>規則</h2>
 			<div class="form2">
@@ -45,13 +45,27 @@
 			</div>
 		</div>
 		
+		
 		<div class="form">
 			<h2>作業列表</h2>
 			<div class="form2">
-				<div id="homeworkList">
-					<div class="homeworkItem"></div>
+				
+				<div class="loadingSpinner" id="loadingSpinner" >
+					<div id="loadingSpinnerloader" class="loadingSpinnerloader"></div>	
+					<div id="loadingSpinnertext" class="loadingSpinnertext"></div>
 				</div>
+				
+					<div id="homeworkList">
+				
+						<div class="homeworkItem"></div>
+					
+					</div>
+					
+
+				
 			</div>
+			
+			
 		</div>
 		
 
@@ -75,10 +89,11 @@
 
 		</div>
 
-		
+
 
 	<footer>
-		<p> © 2024 by 𝓟𝓾𝓭𝓭𝓲𝓷𝓰 Code x DigiHorizon TECH x SevenBlue TECH </p>
+		<br>
+		<h5> © 2024 by 𝓟𝓾𝓭𝓭𝓲𝓷𝓰 Code x DigiHorizon TECH x SevenBlue TECH </h5>
 		<br>
 		<br>
 		<br>
@@ -134,12 +149,20 @@
 
 async function loadHomeworks() {
     const homeworkList = document.getElementById('homeworkList');
+    const loadingSpinnerloader = document.getElementById('loadingSpinner');
+	
+    // 顯示載入動畫
+    loadingSpinner.style.display = 'block';
     homeworkList.innerHTML = '';
+	homeworkList.style.display = 'none';
 
     try {
         const response = await fetch('load_homeworks.php');
         let homeworks = await response.json();
-        
+
+        // 隱藏載入動畫
+        loadingSpinner.style.display = 'none';
+
         // Get today's date in local time YYYY-MM-DD format
         const today = new Date();
         const year = today.getFullYear();
@@ -156,21 +179,48 @@ async function loadHomeworks() {
         homeworks.forEach((homework) => {
             const homeworkDiv = document.createElement('div');
             homeworkDiv.classList.add('homeworkItem');
-            homeworkDiv.textContent = `上傳者：${homework.uploader} \n 作業內容：${homework.homeworkText} \n 上傳日期：${homework.uploadDate} \n 繳交日期：${homework.dueDate}`;
+
+            // Create individual lines for each piece of information
+            const uploader = document.createElement('p');
+            uploader.textContent = `上傳者：${homework.uploader}`;
+
+            const homeworkText = document.createElement('p');
+            homeworkText.textContent = `作業內容：${homework.homeworkText}`;
+
+            const uploadDate = document.createElement('p');
+            uploadDate.textContent = `上傳日期：${homework.uploadDate}`;
+
+            const dueDate = document.createElement('p');
+            dueDate.textContent = `繳交日期：${homework.dueDate}`;
+
+            // Append lines to homeworkDiv
+            homeworkDiv.appendChild(uploader);
+            homeworkDiv.appendChild(homeworkText);
+            homeworkDiv.appendChild(uploadDate);
+            homeworkDiv.appendChild(dueDate);
+
             homeworkList.appendChild(homeworkDiv);
+			
+			
+			homeworkList.style.display = 'block';
         });
     } catch (error) {
+        // 隱藏載入動畫並顯示錯誤消息
+        // 隱藏載入動畫
+        loadingSpinner.style.display = 'none';
         console.error("Error loading documents:", error);
         Swal.fire({
             icon: 'warning',
             title: '無法載入作業列表',
-            text: 'Error loading documents:error',
+            text: 'Error loading documents: error',
             timer: 10000,
             timerProgressBar: true,
             confirmButtonText: '確認'
         });
     }
 }
+
+
 
 
 document.addEventListener('DOMContentLoaded', (event) => {
